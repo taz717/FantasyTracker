@@ -5,8 +5,9 @@
     <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="lessons2130-master" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
+    <orderEntry type="module" module-name="CSE3120-Lessons-master" />
+    <orderEntry type="module" module-name="CSE3110-Lessons-master" />
+    <orderEntry type="module" module-name="CSE3310_Lessons" />
+    <orderEntry type="module" module-name="CSE3310-Lessons-master" />
   </component>
 </module>

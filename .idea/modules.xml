@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Documents/HighschoolCompCode/CSE3110-Lessons-master/.idea/CSE3110-Lessons-master.iml" filepath="$USER_HOME$/Documents/HighschoolCompCode/CSE3110-Lessons-master/.idea/CSE3110-Lessons-master.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/HighschoolCompCode/CSE3120-Lessons-master/.idea/CSE3120-Lessons-master.iml" filepath="$USER_HOME$/Documents/HighschoolCompCode/CSE3120-Lessons-master/.idea/CSE3120-Lessons-master.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/HighschoolCompCode/CSE3310-Lessons-master/.idea/CSE3310-Lessons-master.iml" filepath="$USER_HOME$/Documents/HighschoolCompCode/CSE3310-Lessons-master/.idea/CSE3310-Lessons-master.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/HighschoolCompCode/CSE3310_Lessons/.idea/CSE3310_Lessons.iml" filepath="$USER_HOME$/Documents/HighschoolCompCode/CSE3310_Lessons/.idea/CSE3310_Lessons.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/FantasyTracker.iml" filepath="$PROJECT_DIR$/.idea/FantasyTracker.iml" />
       <module fileurl="file://$USER_HOME$/Documents/HighschoolCompCode/lessons2130-master/.idea/lessons2130-master.iml" filepath="$USER_HOME$/Documents/HighschoolCompCode/lessons2130-master/.idea/lessons2130-master.iml" />
     </modules>
