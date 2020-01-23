@@ -4,7 +4,7 @@ Combat test
 2020/01/21
 '''
 # imports
-import csv
+import csv, random
 
 # variables, lists and arrays
 
@@ -16,20 +16,18 @@ unitStats = []
 for line in readCSV:
     unitStats.append(line)
 
-# classes
+# //*Classes*\\
 
 class NPC:
-    def __init__(self):
+    def __init__(self, race, tag):
         self.stats = None
-        self.race = None
-        self.tag = None
+        self.race = race
+        self.tag = tag
 
     def getUnitStats(self, statList):
         for i in range(len(statList)):
             if self.race in statList[i][1] and self.tag in statList[i][2]:
                 self.stats = unitStats[i]
-
-    def basic(self):
 
                 '''
                 This is to find the unit's stats, it looks for the unit's race then it looks for the
@@ -38,14 +36,28 @@ class NPC:
                 combat is happening.
                 '''
 
+    def useAbility(self):
+        print(self.stats)
+        choice = input("What would you like to do?")
+        for i in range(len(self.stats)):
+            if choice == self.stats[i]:
+                dmg = random.randrange(1, int(self.stats[9]))
+                return dmg
+
+
+
+
+    def returnUnitStats(self):
+        return self.stats
+
+
+
 class event:
     def __init__(self):
         self.eParty = []
         self.aParty = []
 
-
-
-# functions
+# //*functions*\\
 #   linSearch
 def linSearch(li, spec):
     for i in range(len(li)):
@@ -68,6 +80,7 @@ def menu():
     \t 3. Create an encounter
     \t 4. Open quest tracker
     \t 5. Open Summary log
+    \t 6. View a Char's stats
      ''')
     return choice
 
@@ -79,6 +92,11 @@ def tagselect():
     tag = input("tag?")
     return tag
 
-# Main
+# //*Main*\\
 
-print(unitGrab(unitStats, raceSelect(), tagselect()))
+#print(unitGrab(unitStats, raceSelect(), tagselect()))
+
+unit = NPC(raceSelect(), tagselect())
+unit.getUnitStats(unitStats)
+#print(unit.returnUnitStats())
+print(unit.useAbility())
