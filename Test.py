@@ -45,7 +45,8 @@ class NPC:
                 return dmg
 
 
-
+    def __repr__(self):
+        return "%s" % self.stats
 
     def returnUnitStats(self):
         return self.stats
@@ -66,6 +67,9 @@ class party:
             unit.getUnitStats(unitStats)
             self.party.append(unit)
             # adds the unit to the party comp
+
+    def __repr__(self):
+        return "%s" % self.party
 
     def returnUnitComp(self):
         return self.party
