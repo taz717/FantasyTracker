@@ -52,25 +52,25 @@ class NPC:
 
 
 
-class event:
+class party:
     def __init__(self):
-        self.eParty = []
-        self.aParty = []
+        self.party = []
+
+    def unitComp(self):
+        units = int(input("please enter the # of units you'd like to add"))
+        for i in range(units):
+            unitID = idSearch()
+            # grabs unit stats
+            unit = NPC(unitID[0], unitID[1])
+            # assigns unit stats
+            unit.getUnitStats(unitStats)
+            self.party.append(unit)
+            # adds the unit to the party comp
+
+    def returnUnitComp(self):
+        return self.party
 
 # //*functions*\\
-#   linSearch
-def linSearch(li, spec):
-    for i in range(len(li)):
-        print(i, li[i])
-        if spec == li[i][1]:
-            print("yote")
-            break
-
-def unitGrab(li, spec, unit):
-    for i in range(len(li)):  # This is to find the unit's stats, it looks for the unit's race then it looks for the
-        if spec in li[i][1] and unit in li[i][2]:  # unit's name, afterwards it returns the stats hopefully sending it
-            unitStats = li[i]  # into the class to create the object and putting it into an array of enemies where
-            return unitStats  # combat is happening.
 
 def menu():
     choice = input('''
@@ -84,19 +84,16 @@ def menu():
      ''')
     return choice
 
-def raceSelect():
-    race = input("Race?")
-    return race
+def idSearch():
+    id = (input("Please enter race ID"))
+    for i in range(len(unitStats)):
+        if id == (unitStats[i][0]):
+            race = unitStats[i][1]
+            tag = unitStats[i][2]
+            return race, tag
 
-def tagselect():
-    tag = input("tag?")
-    return tag
 
 # //*Main*\\
-
-#print(unitGrab(unitStats, raceSelect(), tagselect()))
-
-unit = NPC(raceSelect(), tagselect())
-unit.getUnitStats(unitStats)
-#print(unit.returnUnitStats())
-print(unit.useAbility())
+squad = party()
+squad.unitComp()
+print(squad.returnUnitComp())
