@@ -3,6 +3,11 @@ Moataz Khallaf
 Combat test
 2020/01/21
 '''
+#TODO:
+# combat DOT effect
+# Find a better way to apply dmg modifier
+# PC Port
+
 # imports
 import csv, random
 
@@ -20,11 +25,24 @@ for line in readCSV:
 
 class NPC:
     def __init__(self, race, tag):
+        """
+        overview: Class to apply to NPCs and methods are designed to make shit simple but it's not because my coding
+        sucks
+        :param race:
+        :param tag:
+        """
         self.stats = None
         self.race = race
         self.tag = tag
 
     def getUnitStats(self, statList):
+        """
+        overview: grabbing the unit's stats from a csv file
+        input: Unit ID
+        output: array with stats
+        :param statList:
+        :return:
+        """
         for i in range(len(statList)):
             if self.race in statList[i][1] and self.tag in statList[i][2]:
                 self.stats = unitStats[i]
@@ -37,18 +55,43 @@ class NPC:
                 '''
 
     def useAbility(self):
+        """
+        overview: Lets the unit use an ability from the stat list it's assigned
+        input: ability choice
+        output: ability stats
+        :return:
+        """
         print(self.stats)
         choice = input("What would you like to do?")
         for i in range(len(self.stats)):
-            if choice == self.stats[i]:
+            if choice == self.stats[i] and choice == self.stats[15]:
                 dmg = random.randrange(1, int(self.stats[9]))
-                return dmg
 
+            elif choice == self.stats[i] and choice == self.stats[16]:  # if the choice and ability match
+                dmg = [(random.randrange(1, int(self.stats[9])) * (1 - (self.stats[18] / 100)))
+                        , (self.stats[17])
+                        , self.stats[19]]  # send back dmg, %chance to apply effect and DOT
+
+            elif choice == self.stats[i] and choice == self.stats[20]:
+                dmg = [(random.randrange(1, int(self.stats[9])) * (1 - (self.stats[22] / 100)))
+                        , (self.stats[21] / 100)
+                        , self.stats[24]
+                        ]
+            elif choice == self.stats[i] and choice == self.stats[24]:
+                dmg = [(random.randint(1, ))]
 
     def __repr__(self):
+        """
+        overview: this is just to make sure if I want to print it out, it comes out as a string not an object code
+        :return:
+        """
         return "%s" % self.stats
 
     def returnUnitStats(self):
+        """
+        overview: idk fam, like it literally just returns it
+        :return:
+        """
         return self.stats
 
 
@@ -67,6 +110,16 @@ class party:
             unit.getUnitStats(unitStats)
             self.party.append(unit)
             # adds the unit to the party comp
+
+    def takeAbliity(self, input):
+        x = 0
+        for i in range(len(self.party)):
+            x = x + 1
+            print(f" {x}. {(self).party[i]}")
+
+        atkChoice = int(input(""))
+
+
 
     def __repr__(self):
         return "%s" % self.party
@@ -98,6 +151,16 @@ def idSearch():
 
 
 # //*Main*\\
+'''
+unitID = idSearch()
+unit1 = NPC(unitID[0], unitID[1])
+unit1.getUnitStats(unitStats)
+unitID = idSearch()
+unit2 = NPC(unitID[0], unitID[1])
+unit2.getUnitStats(unitStats)
+'''
+
 squad = party()
 squad.unitComp()
-print(squad.returnUnitComp())
+squad.takeAbliity(000)
+
