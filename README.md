@@ -1,9 +1,9 @@
 # FantasyTracker
-This program is made ease a DND stat tracking (warhammer type beat)
+This program is made for my homebrew dnd that mixes warhammer lore with darkest dungeon type combat
 
 ## Quest Tracker (anyone)
 
-###class: used to setup quests and shit.
+###class: used to setup quests and shtuff.
 
 ####Must be able to:
 
