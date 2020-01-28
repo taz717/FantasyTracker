@@ -32,6 +32,7 @@ c) AP
 a) ward sav and res\
 b) armor vs toughness
 3) delete objects with 0 hp
+4) accuracy and prot is minimum -> random between min and 100
 
 ## Character (Taz)
 

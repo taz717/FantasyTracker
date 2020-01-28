@@ -149,6 +149,17 @@ def menu():
      ''')
     return choice
 
+
+def hit(acc, dodge):
+    acc = random.randrange(acc, 100)
+    dodge = random.randrange(dodge, 100)
+    if acc - dodge >= 1:
+        itHit = 1
+    else:
+        itHit = 0
+    
+    return itHit
+
 # IMPORTANT: Because of the refactoring I'm not
 #            sure that all of this is necessary
 #            anymore.
