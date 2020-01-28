@@ -16,9 +16,9 @@ unit_stats = pd.read_csv('unitStats.csv')
 # print(unit_stats.head())
 
 
-# for i in range(len(unit_stats['TAG'])):
-#     print(i, unit_stats['TAG'][i])
-#     print(unit_stats.iloc[i])
+for i in range(len(unit_stats['TAG'])):
+    print(i, unit_stats['TAG'][i])
+    print(unit_stats.iloc[i])
 
 # def get_unit(data, tag):
 #     pass
@@ -30,14 +30,24 @@ class NPC:
         """
         for i in range(len(stat_list['TAG'])):
             if stat_list['TAG'][i].lower() == tag.lower():
+                self.tag = tag
+                self.race = stat_list.iloc[i]['RACE']
                 self.stats = stat_list.iloc[i]
 
     def get_unit_stats(self):
-        return self.stats
+        return self.stats.values.tolist()
+
+    def use_ability(self):
+        pass
 
 
 if __name__ == "__main__":
     ratogre = NPC('RatOgre', unit_stats)
-    print(ratogre.get_unit_stats().values)
+    print(type(ratogre.get_unit_stats()))
+    print(ratogre.get_unit_stats()[15], ratogre.stats[9])
+    print(ratogre.get_unit_stats()[16])
+    print(ratogre.get_unit_stats()[20])
+    print(ratogre.get_unit_stats()[24])
+    print(ratogre.race)
 
 
