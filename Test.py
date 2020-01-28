@@ -19,7 +19,7 @@ class NPC:
     # eliminating the need for the idSearch() function
     # because it can just figure out what unit it is
     # in the __init__ method
-    def __init__(self, tag, stat_list):
+    def __init__(self, id, stat_list):
         """
         overview: Class to apply to NPCs and methods are designed to make shit simple but it's not because my coding
         sucks
@@ -30,9 +30,9 @@ class NPC:
         # This loop goes through every unit in the statlist
         # and sets the objects attributes to its respective
         # units attributes based on the tag input
-        for unit in range(len(stat_list['TAG'])):
-            if stat_list['TAG'][unit].lower() == tag.lower():
-                self.tag = tag
+        for unit in range(len(stat_list['ID'])):
+            if stat_list['ID'][unit] == id:
+                self.id = id
                 self.race = stat_list.iloc[unit]['RACE']
                 self.stats = stat_list.iloc[unit]
 
@@ -87,10 +87,10 @@ class NPC:
         overview: this is just to make sure if I want to print it out, it comes out as a string not an object code
         :return:
         """
-        return self.stats['TAG']
+        return str(self.stats.values.tolist())
 
     def __str__(self):
-        return self.stats['TAG']
+        return str(self.stats.values.tolist())
 
 class Party:
 
@@ -167,8 +167,10 @@ unit2.getUnitStats(unitStats)     -> No longer needed, stats are set in object c
 # be imported as well as used as a script for the
 # testing purposes
 if __name__ == "__main__":
-    squad = Party(unit_stats)
-    squad.unit_comp()
-    squad.take_ability(000)
+    # squad = Party(unit_stats)
+    # squad.unit_comp()
+    # squad.take_ability(000)
 
-
+    x = NPC(0, unit_stats)
+    print(str(x.get_unit_stats().tolist()))
+    print(x)
