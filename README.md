@@ -3,9 +3,9 @@ This program is made for my homebrew dnd that mixes warhammer lore with darkest 
 
 ## Quest Tracker (anyone)
 
-###class: used to setup quests and shtuff.
+### class: used to setup quests and shtuff.
 
-####Must be able to:
+#### Must be able to:
 
 1) create quest objects which have a goal and rewards
 2) have attributes such as reward == *whatever the reward is*\
@@ -20,7 +20,7 @@ goal == *summary of quest description*
 1) create a csv with stats for every enemy required
 2) pull from the stats into a class that creates enemeies as objects
 3) grab stats for parties which are arrayed together.
-4) display all stats (abilities too because fuck khalil)
+4) display all stats (abilities too because screw khalil)
 
 ### Combat maths
 
