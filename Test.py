@@ -21,7 +21,10 @@ class NPC:
     # in the __init__ method
     def __init__(self, tag, stat_list):
         """
-        docstring
+        overview: Class to apply to NPCs and methods are designed to make shit simple but it's not because my coding
+        sucks
+        :param race:
+        :param tag:
         """
 
         # This loop goes through every unit in the statlist
@@ -37,11 +40,21 @@ class NPC:
     # I've changed the get_unit_stats to return the unit stats
     # as a pandas dataframe
     def get_unit_stats(self):
+        """
+        overview: idk fam, like it literally just returns it
+        :return:
+        """
         return self.stats
 
     # Honestly this method is a straight copy paste because I
     # do not know what the heck it's supposed to do
     def use_ability(self):
+        """
+        overview: Lets the unit use an ability from the stat list it's assigned
+        input: ability choice
+        output: ability stats
+        :return:
+        """
         print(self.stats)
         choice = input("What would you like to do?")
         for i in range(len(self.stats)):
@@ -70,6 +83,10 @@ class NPC:
     # ### repr and str methods now return the tag name
 
     def __repr__(self):
+        """
+        overview: this is just to make sure if I want to print it out, it comes out as a string not an object code
+        :return:
+        """
         return self.stats['TAG']
 
     def __str__(self):
@@ -132,6 +149,23 @@ def menu():
      ''')
     return choice
 
+# IMPORTANT: Because of the refactoring I'm not
+#            sure that all of this is necessary
+#            anymore.
+
+# //*Main*\\
+'''
+unitID = idSearch()               -> unit_tag = input("Enter tag: ")
+unit1 = NPC(unitID[0], unitID[1]) -> unit1 = NPC(unit_tag, unit_stats) NOTE: Unit stats is a pd dataframe
+unit1.getUnitStats(unitStats)     -> No longer needed, stats are set in object creation
+unitID = idSearch()               -> unit_tag = input("Enter tag: ")
+unit2 = NPC(unitID[0], unitID[1]) -> unit2 = NPC(unit_tag, unit_stats) NOTE: Unit stats is a pd dataframe
+unit2.getUnitStats(unitStats)     -> No longer needed, stats are set in object creation
+'''
+
+# Added a __name__ == __main__ so this module can
+# be imported as well as used as a script for the
+# testing purposes
 if __name__ == "__main__":
     squad = Party(unit_stats)
     squad.unit_comp()
