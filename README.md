@@ -20,7 +20,7 @@ goal == *summary of quest description*
 1) create a csv with stats for every enemy required
 2) pull from the stats into a class that creates enemeies as objects
 3) grab stats for parties which are arrayed together.
-4) display all stats (abilities too because fuck khalil)
+4) display all stats (abilities too because screw khalil)
 
 ### Combat maths
 
