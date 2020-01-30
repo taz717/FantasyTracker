@@ -57,38 +57,6 @@ class Character:
         """
         return self.stats
 
-    def use_ability(self):
-        """
-        The function to use a characters
-        """
-        """
-        overview: Lets the unit use an ability from the stat list it's assigned
-        input: ability choice
-        output: ability stats
-        :return:
-        """
-        print(self.stats)
-        choice = input("What would you like to do?")
-        for i in range(len(self.stats)):
-            if choice == self.stats[i] and choice == self.stats[15]:
-                dmg = random.randrange(1, int(self.stats[9]))
-                print(dmg)
-
-            elif choice == self.stats[i] and choice == self.stats[16]:  # if the choice and ability match
-                dmg = [(random.randrange(1, int(self.stats[9])) * (1 - (self.stats[18] / 100)))
-                        , (self.stats[17])
-                        , self.stats[19]]  # send back dmg, %chance to apply effect and DOT
-
-            elif choice == self.stats[i] and choice == self.stats[20]:
-                dmg = [(random.randrange(1, int(self.stats[9])) * (1 - (self.stats[22] / 100)))
-                        , (self.stats[21] / 100)
-                        , self.stats[24]
-                        ]
-            elif choice == self.stats[i] and choice == self.stats[24]:
-                # added random end range value because it was missing
-                # change later to correct range
-                dmg = [(random.randint(1, 2))]
-
     def __repr__(self):
         return str(self.stats.values.tolist())
 
@@ -115,13 +83,62 @@ class NPC(Character):
         self.move_chance = self.stats['Move%Chance']
         self.move_dmg_mod = self.stats['moveDMGMod']
 
+    def use_ability(self):
+        """
+        The function to use a characters
+        """
+        """
+        overview: Lets the unit use an ability from the stat list it's assigned
+        input: ability choice
+        output: ability stats
+        :return:
+        """
+
+        choice = input("What would you like to do?")
+        for i in range(len(self.stats)):
+            if choice == self.stats[i] and choice == self.basic:
+                dmg = random.randrange(1, int(self.dmg))
+
+                if dmg != int(dmg):
+                    dmg = int(round(dmg) + 1)
+
+                return dmg
+
+            elif choice == self.stats[i] and choice == self.blight:  # if the choice and ability match
+                dmg = [(random.randrange(1, int(self.dmg)) * (1 - (self.blight_dmg_mod / 100)))
+                        , (self.blight_chance /100)
+                        , self.blight_dot]  # send back dmg, %chance to apply effect and DOT
+
+                if dmg[0] != int(dmg[0]):
+                    dmg[0] = int(round(dmg[0]) + 1)
+
+                return dmg
+
+            elif choice == self.stats[i] and choice == self.bleed:
+                dmg = [(random.randrange(1, int(self.dmg)) * (1 - (self.bleed_dmg_mod / 100)))
+                        , (self.bleed_chance / 100)
+                        , self.bleed_dot]
+
+                if dmg[0] != int(dmg[0]):
+                    dmg[0] = int(round(dmg[0]) + 1)
+
+                return dmg
+
+            elif choice == self.stats[i] and choice == self.stats[24]:
+                dmg = [(random.randint(1, int(self.dmg) * (1 - self.move_dmg_mod / 100)))
+                       , (self.move_chance / 100)]
+
+                if dmg[0] != int(dmg[0]):
+                    dmg[0] = int(round(dmg[0]) + 1)
+
+                return dmg
 
 
 # _____________ Functions _______________
 
 def hit(acc, dodge):
-    acc = random.randrange(acc, 100)
-    dodge = random.randrange(dodge, 100)
+    acc = random.randint(acc, 100)
+    dodge = random.randint(dodge, 100)
     if acc - dodge >= 1:
         itHit = 1
     else:
@@ -132,11 +149,23 @@ def hit(acc, dodge):
 # _____________ TEST _______________
 
 if __name__ == "__main__":
+
     import pandas as pd
     unit_stats = pd.read_csv('unitStats.csv')
     test_repr = []
+    '''
     for i in range(0, 16):
         test_repr.append(NPC(i, unit_stats))
     for i in range(len(test_repr)):
         print(test_repr[i])
     print(test_repr[0].get_unit_stats().head())
+
+    while True:
+        print(hit(test_repr[0].acc, test_repr[1].dodge))  # It works wtf
+    '''
+
+    test = NPC(0, unit_stats)
+    test1 = NPC(0, unit_stats)
+    if hit(test.acc, test1.dodge):
+        print(test.get_unit_stats())
+        print(test.use_ability())
