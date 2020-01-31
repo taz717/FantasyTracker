@@ -33,6 +33,8 @@ class Character:
             if stat_lsit['ID'][unit] == id:
                 self.id = id
                 self.stats = stat_lsit.iloc[unit]
+
+                # stuff that gets pulled out of the csv
                 self.race = self.stats['RACE']
                 self.tag = self.stats['TAG']
                 self.hp = self.stats['HP']
@@ -47,6 +49,8 @@ class Character:
                 self.move_res = self.stats['MoveRES']
                 self.stun_res = self.stats['StunRES']
                 self.actions = self.stats['Actions']
+
+                 # just random stuff
 
     def get_unit_stats(self):
         """
@@ -136,6 +140,80 @@ class NPC(Character):
 
 # _____________ Functions _______________
 
+def partition(li, first, last):
+    '''
+    This was written back in zhang's comp sci class, I just borrowed the code I wrote before
+    :param li:
+    :param first:
+    :param last:
+    :return:
+    '''
+    pivotVal = li[first]
+
+    leftMark = first + 1
+    rightMark = last
+
+    done = False
+    while not done:
+
+        while leftMark <= rightMark and li[leftMark] <= pivotVal:
+            leftMark += 1
+
+        while rightMark >= leftMark and li[rightMark] >= pivotVal:
+            rightMark -= 1
+
+        if rightMark < leftMark:  # stopping case in iteration itself
+            done = True
+
+        else:
+            temp = li[leftMark]
+            li[leftMark] = li[rightMark]
+            li[rightMark] = temp
+
+    temp = li[first]
+    li[first] = li[rightMark]  #li[first], li[rightMark] = li[rightMark], li[first]
+    li[rightMark] = temp
+
+    return rightMark
+
+def quickSort(li, first, last):
+    '''
+    This was written back in zhang's comp sci class, I just borrowed the code I wrote before
+    :param li:
+    :param first:
+    :param last:
+    :return:
+    '''
+    if first < last:  # stopping case
+        splitPoint = partition(li, first, last)
+
+        quickSort(li, first, splitPoint -1)
+        quickSort(li, splitPoint +1, last)
+
+
+
+def initiative(party1, party2):
+    '''
+    This rolls a random number between 1 and the max speed someone can have per turn then creates a
+    different array that has the order of the fight happening rn
+    :param party1:
+    :param party2:
+    :return:
+    '''
+    party1_speed = []
+    party2_speed = []
+    for i in range(len(party1)):
+        temp_spd = random.randint(1, party1[i].spd)
+        party1_speed.append([temp_spd, party1[i].tag])
+
+    for i in range(len(party2)):
+        temp_spd = random.randint(1, party1[i].spd)
+        party2_speed.append([temp_spd, party1[i].tag])
+
+    total_party = party1_speed+party2_speed
+    (quickSort(total_party, 0, len(total_party) - 1))
+    return total_party
+
 def hit(acc, dodge):
     acc = random.randint(acc, 100)
     dodge = random.randint(dodge, 100)
@@ -152,20 +230,22 @@ if __name__ == "__main__":
 
     import pandas as pd
     unit_stats = pd.read_csv('unitStats.csv')
-    test_repr = []
-    '''
-    for i in range(0, 16):
-        test_repr.append(NPC(i, unit_stats))
-    for i in range(len(test_repr)):
-        print(test_repr[i])
-    print(test_repr[0].get_unit_stats().head())
+    test_repr1 = []
+    test_repr2 = []
 
-    while True:
-        print(hit(test_repr[0].acc, test_repr[1].dodge))  # It works wtf
-    '''
+    for i in range(0, 4):
+        test_repr1.append(NPC(i, unit_stats))
+    for i in range(0, 4):
+        test_repr2.append(NPC(i, unit_stats))
 
-    test = NPC(0, unit_stats)
-    test1 = NPC(0, unit_stats)
-    if hit(test.acc, test1.dodge):
-        print(test.get_unit_stats())
-        print(test.use_ability())
+    total_party = initiative(test_repr1, test_repr2)
+
+
+
+
+    #
+    # test = NPC(0, unit_stats)
+    # test1 = NPC(0, unit_stats)
+    # if hit(test.acc, test1.dodge):
+    #     print(test.get_unit_stats())
+    #     print(test.use_ability())
