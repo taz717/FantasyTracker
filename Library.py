@@ -224,6 +224,15 @@ def hit(acc, dodge):
 
     return itHit
 
+def recieve(char, stats):
+    if type(stats) in (int, float):
+        char.hp -= stats
+    elif type(stats) == list:
+        # do things for more
+        # than one stat item
+        pass
+
+
 # _____________ TEST _______________
 
 if __name__ == "__main__":
@@ -237,6 +246,7 @@ if __name__ == "__main__":
         test_repr1.append(NPC(i, unit_stats))
     for i in range(0, 4):
         test_repr2.append(NPC(i, unit_stats))
+    print(test_repr1, test_repr2)
 
     total_party = initiative(test_repr1, test_repr2)
 
