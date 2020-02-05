@@ -3,8 +3,8 @@ Moataz Khallaf
 Library
 2020/01/28
 
-Contributors: Dhiraj Meenavilli -> Hit function
-              Zeeshan Hooda     -> Refactor using pandas
+Contributors: Dhiraj Meenavilli
+              Zeeshan Hooda
 '''
 
 import pandas as pd
@@ -98,7 +98,7 @@ class NPC(Character):
         :return:
         """
 
-        choice = input("What would you like to do?")
+        choice = input("What would you like to do? ")
         for i in range(len(self.stats)):
             if choice == self.stats[i] and choice == self.basic:
                 dmg = random.randrange(1, int(self.dmg))
@@ -224,13 +224,25 @@ def hit(acc, dodge):
 
     return itHit
 
-def recieve(char, stats):
-    if type(stats) in (int, float):
-        char.hp -= stats
-    elif type(stats) == list:
-        # do things for more
-        # than one stat item
-        pass
+def receive_dmg(unit, dmg):  # void receive_dmg(Character, int/list)
+    """
+    This function gets damage stats and affects the character arg.
+
+    Parameters:
+        unit (Character): The instance of Character class or subclass
+        dmg (int/list): The damage value or list from Character that used ability
+    """
+    if type(dmg) in (int, float):
+        unit.hp -= dmg
+    elif isinstance(dmg, list):
+        # dmg list <= 3
+        if len(dmg) >= 3:
+            unit.hp -= dmg[0] # idx 0 -> dmg
+            chance = dmg[1]  # idx 1 -> %chance to apply
+            dot = dmg[2]     # idx 2 -> DOT
+        elif len(dmg) == 2:
+            unit.hp -= dmg[0]
+            unnamed = dmg[1]
 
 
 # _____________ TEST _______________
@@ -246,7 +258,6 @@ if __name__ == "__main__":
         test_repr1.append(NPC(i, unit_stats))
     for i in range(0, 4):
         test_repr2.append(NPC(i, unit_stats))
-    print(test_repr1, test_repr2)
 
     total_party = initiative(test_repr1, test_repr2)
 
