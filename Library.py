@@ -10,6 +10,9 @@ Contributors: Dhiraj Meenavilli
 import pandas as pd
 import random
 
+# import debuglib
+from debug.debuglib import debug_function
+
 # _____________ Classes _______________
 
 class Character:
@@ -243,6 +246,9 @@ def receive_dmg(unit, dmg):  # void receive_dmg(Character, int/list)
         elif len(dmg) == 2:
             unit.hp -= dmg[0]
             unnamed = dmg[1]
+
+    # Debugging function from debuglib
+    debug_function(receive_dmg, [unit, dmg])
 
 
 # _____________ TEST _______________
